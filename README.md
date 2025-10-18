@@ -133,6 +133,8 @@ Para executar o projeto, você precisa iniciar o backend (Supabase) e o frontend
     - **Autenticação:** Gerenciamento de usuários (cadastro e login).
     - **Banco de Dados Postgres:** Armazenamento de dados relacionais para usuários e planos de aula.
     - **Edge Functions:** Funções serverless em Deno/TypeScript para executar a lógica de negócio, como a criação e listagem de planos de aula.
+- **Inteligência Artificial:**
+  - **Google Gemini** (gemini-2.0-flash-exp): O modelo foi escolhido por seu equilíbrio entre performance e custo. Sendo um modelo "flash", ele oferece respostas extremamente rápidas, ideal para funcionalidades interativas como a geração e sugestão de conteúdo para os planos de aula diretamente na interface do usuário, sem causar longas esperas.
 
 ## Desafios Encontrados e Soluções
 
@@ -140,4 +142,5 @@ Para executar o projeto, você precisa iniciar o backend (Supabase) e o frontend
    - Implementação de hooks customizados (useListLessons, useAuth) para isolar a lógica de dados
 2. Manutenção da experiência do usuário entre login/logout
    - Gerenciamento de estado global e persistência de sessão Supabase
+
 
