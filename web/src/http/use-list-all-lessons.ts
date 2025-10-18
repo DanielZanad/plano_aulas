@@ -19,7 +19,6 @@ export function useListLessons() {
           },
         }
       );
-      console.log(response);
       const result: ListAllLessonsResponse = await response.json();
 
       return result;

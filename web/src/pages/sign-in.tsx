@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { useCreateSession } from "@/http/use-create-session";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import z from "zod";
 import Cookies from "js-cookie";
 
@@ -36,7 +36,7 @@ export function SignIn() {
   const navigate = useNavigate();
 
   if (token) {
-    return <Navigate to="/signin" replace />;
+    navigate("/");
   }
 
   const { mutateAsync: createSession } = useCreateSession();
@@ -50,7 +50,7 @@ export function SignIn() {
 
   async function handleSignInUser(user: signInUserSchemaData) {
     try {
-      const result = await createSession({
+      await createSession({
         email: user.email,
         password: user.password,
       });
