@@ -1,13 +1,12 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+// deno-lint-ignore no-import-prefix
 import { GoogleGenerativeAI } from "npm:@google/generative-ai";
 Deno.serve(async (req) => {
-  // Permitir qualquer origem (ou colocar sua URL do frontend)
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
   };
-  // Responde o preflight OPTIONS
   if (req.method === "OPTIONS") {
     return new Response(null, {
       status: 204,
@@ -29,7 +28,6 @@ Deno.serve(async (req) => {
         },
       ],
     });
-    // Autenticação
     const authHeader = req.headers.get("Authorization");
     if (!authHeader) {
       return new Response("Unauthorized", {
