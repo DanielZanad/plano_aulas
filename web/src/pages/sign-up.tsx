@@ -18,7 +18,8 @@ import { useCreateUser } from "@/http/use-create-user";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
-import { useNavigate } from "react-router-dom"; // 👈 Importa o hook de navegação
+import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const createUserSchema = z.object({
   full_name: z.string().min(3, { message: "min 3 characters" }),
@@ -29,7 +30,6 @@ const createUserSchema = z.object({
 type createUserData = z.infer<typeof createUserSchema>;
 
 export function SignUp() {
-  const navigate = useNavigate(); // 👈 inicializa
   const { mutateAsync: createUser } = useCreateUser();
   const form = useForm<createUserData>({
     resolver: zodResolver(createUserSchema),
@@ -41,21 +41,23 @@ export function SignUp() {
   });
 
   async function handleSignUpUser(user: createUserData) {
+    const token = Cookies.get("token");
+    const navigate = useNavigate();
+
+    if (token) {
+      return <Navigate to="/signin" replace />;
+    }
     console.log("handleSignUpUser");
 
     try {
-      const result = await createUser({
+      await createUser({
         full_name: user.full_name,
         email: user.email,
         password: user.password,
       });
 
-      console.log(result);
-
-      // 👇 Mostra aviso de sucesso
       alert("Conta criada com sucesso! Verifique seu email antes de entrar.");
 
-      // 👇 Redireciona para a página de login
       navigate("/signin");
     } catch (error) {
       console.error("Erro ao criar conta:", error);

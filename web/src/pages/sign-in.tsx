@@ -18,8 +18,9 @@ import { Input } from "@/components/ui/input";
 import { useCreateSession } from "@/http/use-create-session";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import z from "zod";
+import Cookies from "js-cookie";
 
 const signInUserSchema = z.object({
   email: z.string().email({ message: "Email inválido" }),
@@ -31,7 +32,13 @@ const signInUserSchema = z.object({
 type signInUserSchemaData = z.infer<typeof signInUserSchema>;
 
 export function SignIn() {
+  const token = Cookies.get("token");
   const navigate = useNavigate();
+
+  if (token) {
+    return <Navigate to="/signin" replace />;
+  }
+
   const { mutateAsync: createSession } = useCreateSession();
   const form = useForm<signInUserSchemaData>({
     resolver: zodResolver(signInUserSchema),
@@ -47,10 +54,6 @@ export function SignIn() {
         email: user.email,
         password: user.password,
       });
-
-      console.log("Login bem-sucedido:", result);
-
-      // 👇 Mostra aviso e redireciona
       alert("Login realizado com sucesso!");
       navigate("/");
     } catch (error) {
