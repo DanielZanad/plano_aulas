@@ -6,7 +6,7 @@ A arquitetura é baseada em um monorepo, contendo o frontend em React e o backen
 
 ## URL da aplicacao
 
-[Link](vite-brown-seven.vercel.app)
+[Link](https://vite-brown-seven.vercel.app/)
 
 - Para acessar, basta utilizar um e-mail válido — a autenticação é gerenciada automaticamente via Supabase que irá enviar um e-mail de confirmação.
 - Email e senha para testes:
@@ -140,3 +140,4 @@ Para executar o projeto, você precisa iniciar o backend (Supabase) e o frontend
    - Implementação de hooks customizados (useListLessons, useAuth) para isolar a lógica de dados
 2. Manutenção da experiência do usuário entre login/logout
    - Gerenciamento de estado global e persistência de sessão Supabase
+
