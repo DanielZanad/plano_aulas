@@ -4,7 +4,7 @@ O projeto **Plano de Aulas** é uma aplicação web full-stack projetada para aj
 
 A arquitetura é baseada em um monorepo, contendo o frontend em React e o backend construído com Supabase.
 
-## URL da aplicacao
+## URL da aplicação
 
 [Link](https://vite-brown-seven.vercel.app/)
 
@@ -142,5 +142,6 @@ Para executar o projeto, você precisa iniciar o backend (Supabase) e o frontend
    - Implementação de hooks customizados (useListLessons, useAuth) para isolar a lógica de dados
 2. Manutenção da experiência do usuário entre login/logout
    - Gerenciamento de estado global e persistência de sessão Supabase
+
 
 
